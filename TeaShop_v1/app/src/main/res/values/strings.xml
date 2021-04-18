@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TeaShop_v1</string>
+    <string name="title_activity_navigtion_tea_shop">MainActivity</string>
+    <string name="title_assortiments_screen">Товары</string>
+    <string name="title_cart_screen">Корзина</string>
+    <string name="title_personal_area_screen">Личный кабинет</string>
+    <string name="text_textView_assortiments">Тут будут отображаться товары, имеющиеся в наличии на данный момент.</string>
+</resources>
