@@ -7,7 +7,7 @@
     tools:context=".ui.shopAssortiments.AssortimentsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcViewTest"
+        android:id="@+id/rcViewAssorti"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

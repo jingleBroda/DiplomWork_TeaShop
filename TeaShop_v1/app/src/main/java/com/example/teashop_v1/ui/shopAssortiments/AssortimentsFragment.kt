@@ -4,15 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teashop_v1.ListItemAssortiments
-import com.example.teashop_v1.MyAdapter
-import com.example.teashop_v1.NavigtionTeaShop
+import com.example.teashop_v1.AdapterForAssortiScreen
 import com.example.teashop_v1.R
 
 class AssortimentsFragment : Fragment() {
@@ -66,10 +63,18 @@ class AssortimentsFragment : Fragment() {
                 "Подробнее...")
         )
 
-        val myRecyclerView: RecyclerView =root.findViewById(R.id.rcViewTest)
+        val myRecyclerView: RecyclerView =root.findViewById(R.id.rcViewAssorti)
+
+        //ДЛЯ КОРРЕКТНОГО ОТОБРАЖЕНИЯ RECYCLERVIEW добавляем следющие атрибуты:
+        //1.фиксируем размер
         myRecyclerView.hasFixedSize()
+        //2.устанавливаем контекс лайаут менеджеру
         myRecyclerView.layoutManager=LinearLayoutManager(activity)
-        myRecyclerView.adapter=MyAdapter(list,requireContext())
+
+        //устанавливаем кастомный адаптер для экрана с ассортиментами нашему RecyclerView
+        myRecyclerView.adapter=AdapterForAssortiScreen(list,requireContext())
+
+
 
 
 

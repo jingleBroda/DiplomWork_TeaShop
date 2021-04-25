@@ -7,7 +7,7 @@
     tools:context=".TestTableView">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcViewTest"
+        android:id="@+id/rcViewAssorti"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#D4E3E1"

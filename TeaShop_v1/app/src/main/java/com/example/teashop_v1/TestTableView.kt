@@ -54,10 +54,10 @@ class TestTableView : AppCompatActivity() {
             "Подробнее...")
         )
 
-        val myRecyclerView: RecyclerView =this.findViewById(R.id.rcViewTest)
+        val myRecyclerView: RecyclerView =this.findViewById(R.id.rcViewAssorti)
         myRecyclerView.hasFixedSize()
         myRecyclerView.layoutManager=LinearLayoutManager(this)
-        myRecyclerView.adapter=MyAdapter(list,this)
+        myRecyclerView.adapter=AdapterForAssortiScreen(list,this)
 
 
     }

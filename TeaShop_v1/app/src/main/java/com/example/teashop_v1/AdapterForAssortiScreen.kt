@@ -1,7 +1,6 @@
 package com.example.teashop_v1
 
 import android.content.Context
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import java.security.AccessControlContext
 
-class MyAdapter(listArray:ArrayList<ListItemAssortiments>, context: Context):RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+class AdapterForAssortiScreen(listArray:ArrayList<ListItemAssortiments>, context: Context):RecyclerView.Adapter<AdapterForAssortiScreen.ViewHolder>() {
 
     var listArrayResicle=listArray
     var listContextResicle=context
@@ -39,7 +37,7 @@ class MyAdapter(listArray:ArrayList<ListItemAssortiments>, context: Context):Rec
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater=LayoutInflater.from(listContextResicle)
-        return ViewHolder(inflater.inflate(R.layout.item_assortiments_screen,parent,false))
+        return ViewHolder(inflater.inflate(R.layout.row_assortiments_screen,parent,false))
     }
 
     override fun getItemCount(): Int {
