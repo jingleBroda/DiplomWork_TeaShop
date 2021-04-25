@@ -15,11 +15,11 @@
         android:id="@+id/navigation_cart_screen"
         android:name="com.example.teashop_v1.ui.cartClient.CartFragment"
         android:label="@string/title_cart_screen"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_cart_screen" />
 
     <fragment
         android:id="@+id/navigation_personal_area_screen"
         android:name="com.example.teashop_v1.ui.personalArea.PersonalAreaFragment"
         android:label="@string/title_personal_area_screen"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_personal_area_screen" />
 </navigation>

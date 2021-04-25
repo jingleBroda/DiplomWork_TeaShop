@@ -10,4 +10,5 @@ class AssortimentsViewModel : ViewModel() {
         value = "Тут будет список товаров, которые есть в наличиии на данный момент."
     }
     val text: LiveData<String> = _text
+
 }

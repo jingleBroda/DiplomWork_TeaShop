@@ -21,7 +21,7 @@ class CartFragment : Fragment() {
     ): View? {
         cartViewModel =
             ViewModelProvider(this).get(CartViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        val root = inflater.inflate(R.layout.fragment_cart_screen, container, false)
         val textView: TextView = root.findViewById(R.id.text_dashboard)
         cartViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it

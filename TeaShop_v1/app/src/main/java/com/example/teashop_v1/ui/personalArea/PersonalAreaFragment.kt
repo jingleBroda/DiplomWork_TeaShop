@@ -19,13 +19,16 @@ class PersonalAreaFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         personalAreaViewModel =
             ViewModelProvider(this).get(PersonalAreaViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        personalAreaViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        val root = inflater.inflate(R.layout.fragment_personal_area_screen, container, false)
+
+        //val textView: TextView = root.findViewById(R.id.text_notifications)
+        //personalAreaViewModel.text.observe(viewLifecycleOwner, Observer {
+        //    textView.text = it
+        //})
+
         return root
     }
 }
