@@ -1,6 +1,7 @@
 package com.example.teashop_v1
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.teashop_v1.ui.personalArea.PersonalAreaFragment
+
 
 class AdapterForAssortiScreen(listArray:ArrayList<ListItemAssortiments>, context: Context):RecyclerView.Adapter<AdapterForAssortiScreen.ViewHolder>() {
 
@@ -15,6 +18,9 @@ class AdapterForAssortiScreen(listArray:ArrayList<ListItemAssortiments>, context
     var listContextResicle=context
 
     class ViewHolder(view:View):RecyclerView.ViewHolder(view) {
+
+
+
         val rowName=view.findViewById<TextView>(R.id.itemName)
         val rowPrice=view.findViewById<TextView>(R.id.itemPrice)
         val rowDescription=view.findViewById<TextView>(R.id.itemDescription)
@@ -31,8 +37,29 @@ class AdapterForAssortiScreen(listArray:ArrayList<ListItemAssortiments>, context
 
             itemView.setOnClickListener(){
                 Toast.makeText(context,"Press number Row=${listItem.name_id}",Toast.LENGTH_SHORT).show()
+
+                //проба передать текст на другой фрагмент
+                /*
+                //дубль 1
+                val testText = PersonalAreaFragment()
+
+                val bundle = Bundle()
+                bundle.putString("str", listItem.name_id)
+                testText.arguments=bundle
+                */
+
+                //дубль 2 (тут идет перелача на другой ТЕСТОВЫЙ ЭКРАН)
+
+                val testIntent = Intent(context, TestTableView::class.java).apply {
+                    putExtra("testText", listItem.name_id)
+                }
+                context.startActivity(testIntent)
+
+
+
             }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

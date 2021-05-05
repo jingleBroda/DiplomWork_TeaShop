@@ -1,5 +1,6 @@
 package com.example.teashop_v1.ui.shopAssortiments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.teashop_v1.ListItemAssortiments
 import com.example.teashop_v1.AdapterForAssortiScreen
+import com.example.teashop_v1.ListItemAssortiments
 import com.example.teashop_v1.R
+import com.example.teashop_v1.ui.personalArea.PersonalAreaFragment
+
 
 class AssortimentsFragment : Fragment() {
 
@@ -73,11 +76,6 @@ class AssortimentsFragment : Fragment() {
 
         //устанавливаем кастомный адаптер для экрана с ассортиментами нашему RecyclerView
         myRecyclerView.adapter=AdapterForAssortiScreen(list,requireContext())
-
-
-
-
-
         return root
     }
 }

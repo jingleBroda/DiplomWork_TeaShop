@@ -29,37 +29,5 @@ class NavigtionTeaShop : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        /*
-        var list =ArrayList<ListItemAssortiments>()
-        list.add(ListItemAssortiments(
-                R.drawable.test_avatar,
-                "Чай 1",
-                "Ну тут типо описание",
-                100,
-                "Подробнее...")
-        )
-        list.add(ListItemAssortiments(
-                R.drawable.test_avatar,
-                "Чай 2",
-                "Ну тут типо описание",
-                100,
-                "Подробнее...")
-        )
-        list.add(ListItemAssortiments(
-                R.drawable.test_avatar,
-                "Чай 3",
-                "Ну тут типо описание",
-                100,
-                "Подробнее...")
-        )
-
-        val myRecyclerView: RecyclerView =this.findViewById(R.id.rcViewTest)
-        myRecyclerView.hasFixedSize()
-        myRecyclerView.layoutManager=LinearLayoutManager(this)
-        myRecyclerView.adapter=MyAdapter(list,this)
-        */
-
-
     }
 }
