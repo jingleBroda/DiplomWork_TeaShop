@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teashop_v1.ui.personalArea.PersonalAreaFragment
+import com.squareup.picasso.Picasso
 
 
 class AdapterForAssortiScreen(listArray:ArrayList<ListItemAssortiments>, context: Context):RecyclerView.Adapter<AdapterForAssortiScreen.ViewHolder>() {
@@ -29,35 +30,23 @@ class AdapterForAssortiScreen(listArray:ArrayList<ListItemAssortiments>, context
 
 
         fun bind(listItem:ListItemAssortiments, context: Context){
-            rowName.text=listItem.name_id
-            rowPrice.text=listItem.price_id.toString()
-            rowDescription.text=listItem.descript_id
-            rowImage.setImageResource(listItem.img_id)
+            rowName.text=listItem.name
+            rowPrice.text=listItem.cost.toString()+"P"
+            rowDescription.text=listItem.description
+            Picasso.get().load(listItem.image).placeholder(R.drawable.test_avatar).into(rowImage)
+            //rowImage.setImageResource(R.drawable.test_avatar)
             moreInfoText.text="Подробнее..."
 
+            //устанавливаем слушатель нажатия на ячейку RecyclerView
             itemView.setOnClickListener(){
-                Toast.makeText(context,"Press number Row=${listItem.name_id}",Toast.LENGTH_SHORT).show()
-
-                //проба передать текст на другой фрагмент
-                /*
-                //дубль 1
-                val testText = PersonalAreaFragment()
-
-                val bundle = Bundle()
-                bundle.putString("str", listItem.name_id)
-                testText.arguments=bundle
-                */
-
-                //дубль 2 (тут идет перелача на другой ТЕСТОВЫЙ ЭКРАН)
-
+                //Делаем передачу на экран TestTableView(он так называется пока, потому что использовался для изучения работы RecyclerView)
                 val testIntent = Intent(context, TestTableView::class.java).apply {
-                    putExtra("testText", listItem.name_id)
+                    putExtra("testText", listItem.name)
                 }
+                //вызываем открытие экрана с подробной инфой о товаре
                 context.startActivity(testIntent)
-
-
-
             }
+
         }
 
     }

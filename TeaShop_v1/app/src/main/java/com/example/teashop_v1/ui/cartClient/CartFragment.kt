@@ -1,4 +1,4 @@
-package com.example.teashop_v1.ui.cartClient
+  package com.example.teashop_v1.ui.cartClient
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -6,14 +6,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.teashop_v1.*
+import com.example.teashop_v1.AdapterForCartScreen
+import com.example.teashop_v1.ListIteamCart
+import com.example.teashop_v1.R
+
 
 class CartFragment : Fragment() {
 
@@ -47,7 +49,7 @@ class CartFragment : Fragment() {
                 list.add(ListIteamCart(
                         i, //это передача i в параметр name_id
                         "500гр",
-                        "3",
+                        "1",
                         "390Р",
                         R.drawable.test_avatar,
                         R.drawable.img_plus,
@@ -56,7 +58,10 @@ class CartFragment : Fragment() {
                 )
             }
         }
+        /*
+        //при пустой корзине пока будет тестовая ячейка
         else{
+
             list.add(ListIteamCart(
                     "опа, ничего не выбрано", //это передача i в параметр name_id
                     "какая жалость",
@@ -67,40 +72,8 @@ class CartFragment : Fragment() {
                     R.drawable.img_minus
             )
             )
-        }
 
-        /*
-        var list =ArrayList<ListIteamCart>()
-        list.add(ListIteamCart(
-            "Чай1",
-            "500гр",
-            "3",
-            "390Р",
-            R.drawable.test_avatar,
-            R.drawable.img_plus,
-            R.drawable.img_minus
-            )
-        )
-        list.add(ListIteamCart(
-            "Чай2",
-            "500гр",
-            "3",
-            "390Р",
-            R.drawable.test_avatar,
-            R.drawable.img_plus,
-            R.drawable.img_minus
-        )
-        )
-        list.add(ListIteamCart(
-            "Чай3",
-            "500гр",
-            "3",
-            "390Р",
-            R.drawable.test_avatar,
-            R.drawable.img_plus,
-            R.drawable.img_minus
-        )
-        )
+        }
         */
 
         val myRecyclerView: RecyclerView =root.findViewById(R.id.rcViewCart)
@@ -113,7 +86,6 @@ class CartFragment : Fragment() {
 
         //устанавливаем кастомный адаптер для экрана с ассортиментами нашему RecyclerView
         myRecyclerView.adapter= AdapterForCartScreen(list,requireContext())
-
 
 
 
@@ -138,16 +110,5 @@ class CartFragment : Fragment() {
 
         return  result
     }
-
-    /*
-    //тут была попытка расписать событие онклик для кнопки мусора(нужно догуглить как это сделать)
-    fun clearArrayCart(view:View){
-        val editor = preff?.edit()
-        editor?.clear()
-        editor?.apply()
-        Toast.makeText(context,"Корзина очищена", Toast.LENGTH_SHORT).show()
-    }
-
-     */
 
 }
