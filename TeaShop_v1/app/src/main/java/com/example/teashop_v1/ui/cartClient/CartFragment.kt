@@ -1,6 +1,7 @@
   package com.example.teashop_v1.ui.cartClient
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,18 +9,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.teashop_v1.AdapterForCartScreen
-import com.example.teashop_v1.ListIteamCart
+import com.example.teashop_v1.*
 import com.example.teashop_v1.R
+import com.google.firebase.database.*
 
 
-class CartFragment : Fragment() {
+  class CartFragment : Fragment() {
+
 
     var preff :SharedPreferences? = null
+
+    //устанавливаем коннект к БД
+    var database = FirebaseDatabase.getInstance()
+    var myRef = database.getReference("Commodity")
 
     private lateinit var cartViewModel: CartViewModel
 
@@ -31,50 +39,20 @@ class CartFragment : Fragment() {
         cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_cart_screen, container, false)
 
+        //ВРЕМЕННО!!!!!! устанавливаем переменные для изменения веса в зависимости от выбранного количества
+        var tmpQuantity = 500
 
         //считываем собранный формат сохранненых позиций товаров
         preff = activity?.getSharedPreferences("ArrayCartTable", Context.MODE_PRIVATE)
+        var finaliPriceCart:Int =0
         var arrayToStringCartItem:String = preff?.getString("ArrayCart", "Tyt Pusto")!!
+        var arrayToStringCartItemQuantity:String = preff?.getString("ArrayQuantityProductCart", "")!! //строка количеств товаров в корзине
         var testTXT: TextView = root.findViewById(R.id.TestTextView)
-        testTXT.text = arrayToStringCartItem
+        testTXT.text = arrayToStringCartItem //arrayToStringCartItemQuantity
 
         //переводим полученню строку в массив выбранных товаров
         var list =ArrayList<ListIteamCart>()
-        if (arrayToStringCartItem != "Tyt Pusto") {
-            //тут добавляем лист полченных стрингови формирем его с помощью написанной функции decryptionArrayToStringCartItem
-            var nameAssortiCart = decryptionArrayToStringCartItem(arrayToStringCartItem)
 
-            //устонавливаем выбранные ячейки товаров
-            for (i in nameAssortiCart){
-                list.add(ListIteamCart(
-                        i, //это передача i в параметр name_id
-                        "500гр",
-                        "1",
-                        "390Р",
-                        R.drawable.test_avatar,
-                        R.drawable.img_plus,
-                        R.drawable.img_minus
-                )
-                )
-            }
-        }
-        /*
-        //при пустой корзине пока будет тестовая ячейка
-        else{
-
-            list.add(ListIteamCart(
-                    "опа, ничего не выбрано", //это передача i в параметр name_id
-                    "какая жалость",
-                    "0",
-                    "0Р",
-                    R.drawable.test_avatar,
-                    R.drawable.img_plus,
-                    R.drawable.img_minus
-            )
-            )
-
-        }
-        */
 
         val myRecyclerView: RecyclerView =root.findViewById(R.id.rcViewCart)
 
@@ -84,11 +62,74 @@ class CartFragment : Fragment() {
         //2.устанавливаем контекс лайаут менеджеру
         myRecyclerView.layoutManager= LinearLayoutManager(activity)
 
-        //устанавливаем кастомный адаптер для экрана с ассортиментами нашему RecyclerView
-        myRecyclerView.adapter= AdapterForCartScreen(list,requireContext())
+
+        if (arrayToStringCartItem != "Tyt Pusto") {
+            //тут добавляем лист полченных стрингови формирем его с помощью написанной функции decryptionArrayToStringCartItem
+            var nameAssortiCart = decryptionArrayToStringCartItem(arrayToStringCartItem)
+            var quantityAssortiCart = decryptionArrayToStringCartItem(arrayToStringCartItemQuantity) //массив количеств товаров в корзине
+
+            //устонавливаем выбранные ячейки товаров
+            for (i in 0..nameAssortiCart.size-1){
+                val myQuery: Query = myRef.orderByChild("name").equalTo(nameAssortiCart[i])
+                myQuery.addChildEventListener(object : ChildEventListener {
+
+                    override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                        var item:ListItemAssortiments = snapshot.getValue(ListItemAssortiments::class.java)!!
+                        finaliPriceCart+=item.cost*quantityAssortiCart[i].toInt()
+                        testTXT.text = finaliPriceCart.toString()
+
+                                list.add(ListIteamCart(
+                                item.name,
+                                (tmpQuantity * quantityAssortiCart[i].toInt()).toString()+"г",
+                                quantityAssortiCart[i],
+                                item.cost,
+                                item.image,
+                                R.drawable.img_plus,
+                                R.drawable.img_minus
+                        )
+                        )
+
+                        //устанавливаем кастомный адаптер для экрана с ассортиментами нашему RecyclerView
+                        myRecyclerView.adapter= AdapterForCartScreen(list,requireContext())
+
+                    }
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onChildRemoved(snapshot: DataSnapshot) {
+                        TODO("Not yet implemented")
+                    }
+
+                })
 
 
+            }
+        }
 
+
+        //установка слушателя нажатий на кнопку оформления заказа
+        var buttonCreateOrder = root.findViewById<Button>(R.id.createOrder)
+        //buttonCreateOrder.text= buttonCreateOrder.text.toString()+finaliPriceCart.toString()
+        if(arrayToStringCartItem != "Tyt Pusto") {
+            buttonCreateOrder.visibility = View.VISIBLE //показываем кнопку оформлениея заказа
+            buttonCreateOrder.setOnClickListener() {
+                val editor = preff?.edit()
+                editor?.clear()
+                editor?.apply()
+                Toast.makeText(activity, "Заказ успешно сформирован! Ожидайте его готовности.", Toast.LENGTH_SHORT).show()
+                val testIntent = Intent(context, NavigtionTeaShop::class.java)
+                this.startActivity(testIntent)
+            }
+        }
         return root
     }
 

@@ -39,15 +39,25 @@ class TestTableView : AppCompatActivity() {
             var arrayToStringCartItem:String = preff?.getString("ArrayCart", "Tyt Pusto")!!
             var nameAssortiCart = decryptionArrayToStringCartItem(arrayToStringCartItem)
 
-            //если выбранный товар входит в массив элементов корзины, то мы его не добавляем, иначе добавляем
+            //если выбранный товар входит в массив элементов корзины
             if (tmpInsideText in nameAssortiCart) {
+                // То мы его не добавляем
                 Toast.makeText(this,"Вы уже добавили этот товар в корзину.", Toast.LENGTH_SHORT).show()
             }
             else {
-                //сохраняем в последовательнось выбранную позицию
-                val sTr = preff?.getString("ArrayCart", "") + tmpInsideText + "|"
-                editor?.putString("ArrayCart", sTr)
+                //Иначе добавляем
+                //сохраняем в последовательнось выбранную позицию:
+                //1. Сохраняем ее наименование в общую строку наименований
+                val sTr1 = preff?.getString("ArrayCart", "") + tmpInsideText + "|"
+                editor?.putString("ArrayCart", sTr1)
+
+                //2. Сохранем ее количество (по умолчанию колиество = 1)
+                val sTr2 = preff?.getString("ArrayQuantityProductCart", "") + "1" + "|"
+                editor?.putString("ArrayQuantityProductCart", sTr2)
+
+                //Сохраняем.
                 editor?.apply()
+
                 Toast.makeText(this,"Товар успешно добавлен в корзину.", Toast.LENGTH_SHORT).show()
             }
         }

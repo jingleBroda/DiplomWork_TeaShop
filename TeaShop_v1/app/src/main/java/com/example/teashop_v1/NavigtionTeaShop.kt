@@ -26,27 +26,37 @@ class NavigtionTeaShop : AppCompatActivity() {
         if(intent.getStringExtra("deletePosition") != null){
             //1. получаем позицию, которую нужно удалить
             var insideText:String = intent.getStringExtra("deletePosition")!!
-            var insideTextIntFormt = insideText.toInt()!!
+            var deletePosition = insideText.toInt()!!
 
             //2. Считываем текущий набор товаров в корзине
             preff = getSharedPreferences("ArrayCartTable", Context.MODE_PRIVATE)
+
             var arrayToStringCartItem:String = preff?.getString("ArrayCart", "Tyt Pusto")!!
             var nameAssortiCart = decryptionArrayToStringCartItem(arrayToStringCartItem)
 
-            //3. Удаляем из массива товаров корзины полченную позицию
-            nameAssortiCart.removeAt(insideTextIntFormt)
+            var arrayToStringCartItemQuantity:String = preff?.getString("ArrayQuantityProductCart", "")!!
+            var quantityAssortiCart = decryptionArrayToStringCartItem(arrayToStringCartItemQuantity)
 
-            //4. Проверяем на пустоту массива
+            //3. Удаляем из массива товаров корзины полченную позицию
+            nameAssortiCart.removeAt(deletePosition)
+            quantityAssortiCart.removeAt(deletePosition)
+
+            //4. Проверка массива на пустоту(ситуация, когда пользователь удалил все товары из корзины)
             if (nameAssortiCart.size!=0) {
                 //4.1.1. Переводим массив в цельную строку
                 var resultArrayToString = ""
+                var resultQuantityArrayToString = ""
+                var j=0
                 for (i in nameAssortiCart) {
                     resultArrayToString += i + "|"
+                    resultQuantityArrayToString += quantityAssortiCart[j]+"|"
+                    j++
                 }
 
                 //4.1.2. Сохраняем измененеие в ШардПреференс
                 val editor = preff?.edit()
                 editor?.putString("ArrayCart", resultArrayToString)
+                editor?.putString("ArrayQuantityProductCart", resultQuantityArrayToString)
                 editor?.apply()
                 Toast.makeText(this,"Товар был успешно удален из корзины.", Toast.LENGTH_SHORT).show()
             }

@@ -7,4 +7,5 @@
     <string name="text_textView_assortiments">Тут будут отображаться товары, имеющиеся в наличии на данный момент.</string>
     <string name="moreDetails">Подробнее...</string>
     <string name="arrayTextNameProduct">Название покупок из магазина:</string>
+    <string name="textButtonCreateOrder">Оформить заказ</string>
 </resources>
