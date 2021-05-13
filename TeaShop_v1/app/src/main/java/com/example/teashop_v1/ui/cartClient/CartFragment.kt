@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -28,6 +29,7 @@ import com.google.firebase.database.*
     //устанавливаем коннект к БД
     var database = FirebaseDatabase.getInstance()
     var myRef = database.getReference("Commodity")
+    var dbReferensTwo = database.getReference("ActiveOrders")
 
     private lateinit var cartViewModel: CartViewModel
 
@@ -48,7 +50,10 @@ import com.google.firebase.database.*
         var arrayToStringCartItem:String = preff?.getString("ArrayCart", "Tyt Pusto")!!
         var arrayToStringCartItemQuantity:String = preff?.getString("ArrayQuantityProductCart", "")!! //строка количеств товаров в корзине
         var testTXT: TextView = root.findViewById(R.id.TestTextView)
-        testTXT.text = arrayToStringCartItem //arrayToStringCartItemQuantity
+        testTXT.text = "0"//arrayToStringCartItem //arrayToStringCartItemQuantity
+
+
+
 
         //переводим полученню строку в массив выбранных товаров
         var list =ArrayList<ListIteamCart>()
@@ -90,7 +95,7 @@ import com.google.firebase.database.*
                         )
 
                         //устанавливаем кастомный адаптер для экрана с ассортиментами нашему RecyclerView
-                        myRecyclerView.adapter= AdapterForCartScreen(list,requireContext())
+                        myRecyclerView.adapter= AdapterForCartScreen(list,requireContext(), testTXT)
 
                     }
                     override fun onCancelled(error: DatabaseError) {
@@ -125,6 +130,9 @@ import com.google.firebase.database.*
                 val editor = preff?.edit()
                 editor?.clear()
                 editor?.apply()
+
+                dbReferensTwo.push().setValue(list,testTXT.text)
+
                 Toast.makeText(activity, "Заказ успешно сформирован! Ожидайте его готовности.", Toast.LENGTH_SHORT).show()
                 val testIntent = Intent(context, NavigtionTeaShop::class.java)
                 this.startActivity(testIntent)
@@ -152,4 +160,4 @@ import com.google.firebase.database.*
         return  result
     }
 
-}
+  }

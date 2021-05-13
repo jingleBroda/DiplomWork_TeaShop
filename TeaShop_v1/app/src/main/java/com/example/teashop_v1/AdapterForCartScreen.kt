@@ -11,16 +11,19 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-class AdapterForCartScreen(listArray:ArrayList<ListIteamCart>, context: Context): RecyclerView.Adapter<AdapterForCartScreen.ViewHolder>(){
+ class AdapterForCartScreen(listArray:ArrayList<ListIteamCart>, context: Context, sumList:TextView): RecyclerView.Adapter<AdapterForCartScreen.ViewHolder>(){
 
     var listArrayResicle=listArray
     var listContextResicle=context
+    var sumListResicle = sumList
 
-    class ViewHolder(view: View):RecyclerView.ViewHolder(view) {
+      class ViewHolder(view: View):RecyclerView.ViewHolder(view) {
         val rowName=view.findViewById<TextView>(R.id.nameProduct)
         val rowWeight=view.findViewById<TextView>(R.id.weightProduct)
         val rowQuantity=view.findViewById<TextView>(R.id.quantityProduct)
         val rowPrice=view.findViewById<TextView>(R.id.priceProduct)
+
+
 
         val rowMainImg=view.findViewById<ImageView>(R.id.imgProduct)
         val rowPlusImg=view.findViewById<ImageView>(R.id.btnPlus)
@@ -28,7 +31,7 @@ class AdapterForCartScreen(listArray:ArrayList<ListIteamCart>, context: Context)
 
         var preff : SharedPreferences? = null
 
-        fun bind(listItem:ListIteamCart, context: Context,position: Int){
+        fun bind(listItem:ListIteamCart, context: Context,position: Int, sumList:TextView){
 
             rowName.text = listItem.name_id
             rowWeight.text = listItem.weight_id
@@ -42,7 +45,6 @@ class AdapterForCartScreen(listArray:ArrayList<ListIteamCart>, context: Context)
 
             //обработка нажатия на кнопку +
             rowPlusImg.setOnClickListener(){
-
                 //увеличиваем количество выбранного товара
                 var increaseWeightProduct = listItem.quantityProduct_id.toInt()+1
                 listItem.quantityProduct_id = increaseWeightProduct.toString()
@@ -74,6 +76,8 @@ class AdapterForCartScreen(listArray:ArrayList<ListIteamCart>, context: Context)
                 tmpPriceString = (tmpPrice * quantityAssortiCart[position].toInt()).toString()+"Р"
                 rowWeight.text = tmpWeightString
                 rowPrice.text = tmpPriceString
+
+                sumList.text = (sumList.text.toString().toInt()+ tmpPrice ).toString()
 
             }
 
@@ -121,6 +125,9 @@ class AdapterForCartScreen(listArray:ArrayList<ListIteamCart>, context: Context)
                     tmpPriceString = (tmpPrice * quantityAssortiCart[position].toInt()).toString()+"Р"
                     rowWeight.text = tmpWeightString
                     rowPrice.text = tmpPriceString
+
+                    sumList.text = (sumList.text.toString().toInt() - tmpPrice ).toString()
+
                 }
 
             }
@@ -157,9 +164,7 @@ class AdapterForCartScreen(listArray:ArrayList<ListIteamCart>, context: Context)
             return  result
         }
 
-
-
-    }
+     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater= LayoutInflater.from(listContextResicle)
@@ -172,7 +177,7 @@ class AdapterForCartScreen(listArray:ArrayList<ListIteamCart>, context: Context)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var listItem=listArrayResicle[position] //.get(position)
-        holder.bind(listItem,listContextResicle,position)
+        holder.bind(listItem,listContextResicle,position, sumListResicle)
 
     }
 

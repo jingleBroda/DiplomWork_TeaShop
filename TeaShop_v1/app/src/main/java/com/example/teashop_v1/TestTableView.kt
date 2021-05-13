@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.teashop_v1.ui.cartClient.CartFragment
 import com.google.firebase.database.*
 
 
@@ -66,15 +67,6 @@ class TestTableView : AppCompatActivity() {
         val testIntent = Intent(this, NavigtionTeaShop::class.java)
         startActivity(testIntent)
 
-    }
-
-    //очистка ShaardePrefernce
-    fun clearArrayCart(view: View) {
-        val editor = preff?.edit()
-        editor?.clear()
-        editor?.apply()
-        tmpInsideText=""
-        Toast.makeText(this,"Корзина очищена", Toast.LENGTH_SHORT).show()
     }
 
     //преобразование строки с перечнем товаров в корзине в массив строк
