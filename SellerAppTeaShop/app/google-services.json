@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "433033597760",
+    "firebase_url": "https://teashopbd-d2f01-default-rtdb.firebaseio.com",
+    "project_id": "teashopbd-d2f01",
+    "storage_bucket": "teashopbd-d2f01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433033597760:android:f791e01da75b270b6ae0a5",
+        "android_client_info": {
+          "package_name": "com.example.sellerappteashop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433033597760-beopk9olkiulqfeogm8b3039r3fdghce.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDm-aFFXUvecQdH3vNhpdvatVlXDnT6sHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "433033597760-beopk9olkiulqfeogm8b3039r3fdghce.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433033597760:android:c5a91112ac55a8a36ae0a5",
+        "android_client_info": {
+          "package_name": "com.example.teashop_v1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433033597760-beopk9olkiulqfeogm8b3039r3fdghce.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDm-aFFXUvecQdH3vNhpdvatVlXDnT6sHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "433033597760-beopk9olkiulqfeogm8b3039r3fdghce.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

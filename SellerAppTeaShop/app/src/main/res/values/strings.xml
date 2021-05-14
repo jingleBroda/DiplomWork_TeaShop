@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Продавец Чайного магазина</string>
+    <string name="button_active_order">Заказы</string>
+    <string name="title_active_order">Активные заказы</string>
+    <string name="button_personalInfo">Профиль</string>
+    <string name="title_personalInfo">Личный кабинет продавца</string>
+    <string name="button_newCustomer">Добавить клиента</string>
+    <string name="title_addCustomer">Регистрация нового клиента</string>
+    <string name="button_notifyUser">Уведомить покупателя о готовности заказа</string>
+    <string name="button_bailmentCommodity">Товар отдан в руки покупателю</string>
+    <string name="titleTextSingleOrderScreen">Информация о заказе</string>
+</resources>

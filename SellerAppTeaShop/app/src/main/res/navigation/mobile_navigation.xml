@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_list_active_order">
+
+    <fragment
+        android:id="@+id/navigation_list_active_order"
+        android:name="com.example.sellerappteashop.ui.activeOrder.ActiveOrderFragment"
+        android:label="@string/title_active_order"
+        tools:layout="@layout/fragment_list_active_order" />
+
+    <fragment
+        android:id="@+id/navigation_new_customer"
+        android:name="com.example.sellerappteashop.ui.newCustomer.NewCustomerFragment"
+        android:label="@string/title_addCustomer"
+        tools:layout="@layout/fragment_new_customer" />
+
+    <fragment
+        android:id="@+id/navigation_personalInfo"
+        android:name="com.example.sellerappteashop.ui.personaLInfo.PersonaLInfoFragment"
+        android:label="@string/title_personalInfo"
+        tools:layout="@layout/fragment_personal_info" />
+</navigation>
