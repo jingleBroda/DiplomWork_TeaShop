@@ -22,7 +22,9 @@ class TestTableView : AppCompatActivity() {
 
         //принятие данных от фрагмента с ассортиментом
         var insideText=this.findViewById<TextView>(R.id.testInsideTxt)
+        var insideTxtCategory=this.findViewById<TextView>(R.id.categTovarText)
         insideText.text = intent.getStringExtra("testText")
+        insideTxtCategory.text = intent.getStringExtra("categoryTovar")
         tmpInsideText = insideText.text.toString()
         preff = getSharedPreferences("ArrayCartTable", Context.MODE_PRIVATE)
 

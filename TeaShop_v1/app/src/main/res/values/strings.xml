@@ -8,4 +8,10 @@
     <string name="moreDetails">Подробнее...</string>
     <string name="arrayTextNameProduct">Название покупок из магазина:</string>
     <string name="textButtonCreateOrder">Оформить заказ</string>
+    <string name="testFIOUser">Каллистов Максим "\n"Альбертович</string>
+    <string name="hintTextFilter">Название чая</string>
+    <string name="menuFilterTitle1">Зеленый чай</string>
+    <string name="menuFilterTitle2">Черный чай</string>
+    <string name="menuFilterTitle3">Прочее</string>
+
 </resources>

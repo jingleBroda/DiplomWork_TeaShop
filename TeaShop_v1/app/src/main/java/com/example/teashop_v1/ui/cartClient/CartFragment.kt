@@ -131,7 +131,7 @@ import com.google.firebase.database.*
                 editor?.clear()
                 editor?.apply()
 
-                dbReferensTwo.push().setValue(list,testTXT.text)
+                dbReferensTwo.push().setValue(list) //,testTXT.text
 
                 Toast.makeText(activity, "Заказ успешно сформирован! Ожидайте его готовности.", Toast.LENGTH_SHORT).show()
                 val testIntent = Intent(context, NavigtionTeaShop::class.java)

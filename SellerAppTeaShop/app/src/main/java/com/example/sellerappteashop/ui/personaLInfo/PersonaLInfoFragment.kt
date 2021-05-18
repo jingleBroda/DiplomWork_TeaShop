@@ -22,7 +22,7 @@ class PersonaLInfoFragment : Fragment() {
         personaLInfoViewModel =
                 ViewModelProvider(this).get(PersonaLInfoViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_personal_info, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
+
 
 
         return root

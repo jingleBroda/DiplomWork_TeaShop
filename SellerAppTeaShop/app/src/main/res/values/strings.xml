@@ -9,4 +9,5 @@
     <string name="button_notifyUser">Уведомить покупателя о готовности заказа</string>
     <string name="button_bailmentCommodity">Товар отдан в руки покупателю</string>
     <string name="titleTextSingleOrderScreen">Информация о заказе</string>
+    <string name="testUserName">Иванов Иван "\n"Иванович </string>
 </resources>

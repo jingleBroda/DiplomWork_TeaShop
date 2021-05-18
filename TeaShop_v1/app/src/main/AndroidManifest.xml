@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TeaShop_v1">
         <activity android:name=".DetailedProductDescriptionClasses"></activity>
-        <activity android:name=".NavigtionTeaShop">
+        <activity android:name=".NavigtionTeaShop"
+                  android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

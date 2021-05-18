@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.teashop_v1.ui.personalArea.PersonalAreaFragment
 import com.squareup.picasso.Picasso
 
 
@@ -42,6 +40,7 @@ class AdapterForAssortiScreen(listArray:ArrayList<ListItemAssortiments>, context
                 //Делаем передачу на экран TestTableView(он так называется пока, потому что использовался для изучения работы RecyclerView)
                 val testIntent = Intent(context, TestTableView::class.java).apply {
                     putExtra("testText", listItem.name)
+                    putExtra("categoryTovar", listItem.category)
                 }
                 //вызываем открытие экрана с подробной инфой о товаре
                 context.startActivity(testIntent)

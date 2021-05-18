@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/menugroup1" >
+        <item
+            android:id="@+id/menuFilterCateg1"
+            android:checkable="true"
+            android:checked="false"
+            android:title="@string/menuFilterTitle1"/>
+        <item
+            android:id="@+id/menuFilterCateg2"
+            android:checkable="true"
+            android:checked="false"
+            android:title="@string/menuFilterTitle2"/>
+        <item
+            android:id="@+id/menuFilterCateg3"
+            android:checkable="true"
+            android:checked="false"
+            android:title="@string/menuFilterTitle3"/>
+    </group>
+
+
+</menu>
